@@ -1,0 +1,5 @@
+# تثبيت المكتبات
+pip install -r requirements.txt
+
+# تشغيل البوت
+python app.py
