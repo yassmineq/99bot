@@ -28,7 +28,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     reply_markup = InlineKeyboardMarkup(keyboard)
 
     await update.message.reply_text(
-        "اضغط على الزر لزيارة الرابط 👇",
+        "اضغط على الزر لبدء المحادثة 👇",
         reply_markup=reply_markup
     )
 
@@ -46,9 +46,11 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     user_id = query.from_user.id
 
-    # إذا ضغط على الزر، إرسال رابط Google
+    # إذا ضغط على الزر، إرسال الرسالة الجديدة
     if query.data == "start_pressed":
-        await query.edit_message_text("🔗 رابطك: https://www.google.com")
+        await query.edit_message_text(
+            "مرحبا كيف حال هاذا هو جروبي جديدي :\nhttps://google.com.com"
+        )
 
         # إلغاء مؤقت الإنستغرام
         if user_id in user_timers:
@@ -57,8 +59,12 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # إرسال رابط إنستغرام بعد 5 دقائق إذا لم يضغط على الزر
 def send_instagram_link(context, user_id):
+    import asyncio
     asyncio.run_coroutine_threadsafe(
-        context.bot.send_message(chat_id=user_id, text="⏳ انتهى الوقت! رابطك: https://www.instagram.com"),
+        context.bot.send_message(
+            chat_id=user_id,
+            text="⏳ انتهى الوقت! رابطك: https://www.instagram.com"
+        ),
         context.application.loop
     )
     if user_id in user_timers:
@@ -66,7 +72,6 @@ def send_instagram_link(context, user_id):
 
 # تشغيل البوت
 if __name__ == "__main__":
-    import asyncio
     app = ApplicationBuilder().token(TOKEN).build()
 
     app.add_handler(CommandHandler("start", start))
