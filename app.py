@@ -11,7 +11,7 @@ logging.basicConfig(
 )
 
 # توكن البوت
-TOKEN = "ضع_التوكن_ديالك_هنا"
+TOKEN = "8117846251:AAGcT76XbQhm8ViR2yJ7TZu1BdXXxroqROI"
 
 # وقت الانتظار قبل إرسال رابط الإنستغرام (بالثواني)
 WAIT_TIME = 300  # 5 دقائق
